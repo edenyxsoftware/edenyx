@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://edenyx.com/sitemap.xml
+
+Disallow: /css/
+Disallow: /js/
+Disallow: /*.json$
+Disallow: /*.xml$
+
+Allow: /css/*.css
+Allow: /js/*.js
+Allow: /images/
+
+Crawl-delay: 1
