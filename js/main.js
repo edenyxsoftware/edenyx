@@ -1,10 +1,6 @@
 (function() {
     'use strict';
 
-    let servicesInitialized = false;
-    let isScrolling = false;
-    let scrollTimeout = null;
-    let lastScrollTop = 0;
     let cameFromLink = false;
 
     window.addEventListener('load', function() {
@@ -27,13 +23,37 @@
         setupSmoothScrollDetection();
         setupNavbarScroll();
         setupHowWeWorkSideImages();
+        setupHeroVideoMobile();
     }
 
+    /** On small screens, show poster only and do not autoplay video to save bandwidth and avoid main-thread decode. */
+    function setupHeroVideoMobile() {
+        var video = document.querySelector('.hero-bg-video');
+        if (!video) return;
+        function applyMobileVideo() {
+            if (window.innerWidth <= 768) {
+                video.pause();
+                video.currentTime = 0;
+            } else {
+                video.play().catch(function() {});
+            }
+        }
+        applyMobileVideo();
+        window.addEventListener('resize', function() {
+            requestAnimationFrame(applyMobileVideo);
+        });
+    }
+
+    /**
+     * How-we-work side images: preload first pair only; lazy-load others when radio is selected.
+     * Uses data-src pattern for non-initial pairs to avoid loading all large images up front.
+     * decoding="async" and loading="lazy" are set in HTML for the <img> elements.
+     */
     function setupHowWeWorkSideImages() {
         const sideImages = document.querySelectorAll('.how-we-work-side-img');
         const galleryInputs = document.querySelectorAll('input[name="how-gallery"]');
-        const leftImg = document.querySelector('.how-we-work-side-left img');
-        const rightImg = document.querySelector('.how-we-work-side-right img');
+        const leftImg = document.querySelector('.how-we-work-side-left .cloud-photo img');
+        const rightImg = document.querySelector('.how-we-work-side-right .cloud-photo img');
         if (!sideImages.length || !galleryInputs.length || !leftImg || !rightImg) return;
 
         const EXIT_DURATION = 480;
@@ -56,6 +76,7 @@
         function setImagesForIndex(index) {
             const pair = imagePairs[index];
             if (pair) {
+                // Only assign src when needed; first pair is already in HTML src (preloaded)
                 leftImg.src = pair.left;
                 rightImg.src = pair.right;
             }
@@ -102,7 +123,6 @@
         });
 
         var section = document.getElementById('how-we-work');
-        var cardsContainer = section ? section.querySelector('.cards-container') : null;
         if (section) {
             section.querySelectorAll('label[for^="how-item-"]').forEach(function(label) {
                 label.addEventListener('click', function(e) {
@@ -112,14 +132,12 @@
                         input.checked = true;
                         input.dispatchEvent(new Event('change', { bubbles: true }));
                     }
-                    if (section) {
-                        var scrollY = window.scrollY || document.documentElement.scrollTop;
-                        var sectionTop = section.getBoundingClientRect().top + scrollY;
-                        var headerOffset = (document.querySelector('.navbar') && document.querySelector('.navbar').offsetHeight) || 80;
-                        var topMargin = 28;
-                        var targetScroll = Math.max(0, sectionTop - headerOffset - topMargin);
-                        window.scrollTo({ top: targetScroll, behavior: 'smooth' });
-                    }
+                    var scrollY = window.scrollY || document.documentElement.scrollTop;
+                    var sectionTop = section.getBoundingClientRect().top + scrollY;
+                    var headerOffset = (document.querySelector('.navbar') && document.querySelector('.navbar').offsetHeight) || 80;
+                    var topMargin = 28;
+                    var targetScroll = Math.max(0, sectionTop - headerOffset - topMargin);
+                    window.scrollTo({ top: targetScroll, behavior: 'smooth' });
                 }, true);
             });
         }
@@ -154,113 +172,65 @@
         });
     }
 
+    /**
+     * Service cards reveal: use IntersectionObserver instead of scroll listener to avoid
+     * per-scroll style updates (major cause of scroll jank). Once section is in view (threshold ~0.2),
+     * add .reveal so CSS transitions with stagger handle the animation. Disconnect after revealing.
+     * On mobile/tablet (<992px), cards show immediately (no reveal) via CSS.
+     */
     function setupServicesAnimation() {
-        const serviceCards = document.querySelectorAll('.service-card');
         const servicesSection = document.querySelector('.services-section');
-        
-        if (!servicesSection || serviceCards.length === 0) return;
+        if (!servicesSection) return;
 
-        const isDesktop = window.innerWidth >= 992;
-        let lastScrollProgress = -1;
-
-        function updateCardVisibility() {
-            if (!isDesktop) {
-                serviceCards.forEach(card => {
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                });
-                return;
-            }
-
-            const sectionTop = servicesSection.offsetTop;
-            const sectionHeight = servicesSection.offsetHeight;
-            const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-            const viewportHeight = window.innerHeight;
-            
-            const sectionStart = sectionTop - viewportHeight;
-            const sectionEnd = sectionTop + sectionHeight;
-            const scrollProgress = scrollPosition;
-
-            if (cameFromLink && scrollPosition >= sectionTop - viewportHeight * 0.3) {
-                serviceCards.forEach((card, index) => {
-                    setTimeout(() => {
-                        card.style.opacity = '1';
-                        card.style.transform = 'translateY(0)';
-                    }, index * 150);
-                });
-                return;
-            }
-
-            if (scrollProgress < sectionStart) {
-                serviceCards.forEach(card => {
-                    card.style.opacity = '0';
-                    card.style.transform = 'translateY(30px)';
-                });
-                return;
-            }
-
-            if (scrollProgress > sectionEnd) {
-                serviceCards.forEach(card => {
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                });
-                return;
-            }
-
-            const scrollInSection = scrollProgress - sectionStart;
-            const totalScrollNeeded = (sectionHeight + viewportHeight) * 0.65;
-            const scrollRatio = Math.min(Math.max(scrollInSection / totalScrollNeeded, 0), 1);
-
-            serviceCards.forEach((card, index) => {
-                const cardStartRatio = index * 0.18;
-                const cardEndRatio = cardStartRatio + 0.22;
-                
-                let cardOpacity = 0;
-                let cardTransform = 30;
-
-                if (scrollRatio >= cardEndRatio) {
-                    cardOpacity = 1;
-                    cardTransform = 0;
-                } else if (scrollRatio >= cardStartRatio) {
-                    const cardProgress = (scrollRatio - cardStartRatio) / (cardEndRatio - cardStartRatio);
-                    cardOpacity = cardProgress;
-                    cardTransform = 30 * (1 - cardProgress);
-                }
-
-                card.style.opacity = cardOpacity.toString();
-                card.style.transform = `translateY(${cardTransform}px)`;
-            });
+        const isDesktop = window.matchMedia('(min-width: 992px)').matches;
+        if (!isDesktop) {
+            servicesSection.classList.add('reveal');
+            return;
         }
 
-        window.addEventListener('scroll', function() {
-            if (!isScrolling) {
-                isScrolling = true;
-            }
-            clearTimeout(scrollTimeout);
-            scrollTimeout = setTimeout(() => {
-                isScrolling = false;
-            }, 150);
-            updateCardVisibility();
-        });
+        const observer = new IntersectionObserver(
+            function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        servicesSection.classList.add('reveal');
+                        observer.disconnect();
+                    }
+                });
+            },
+            { threshold: 0.2, rootMargin: '0px' }
+        );
 
-        updateCardVisibility();
+        observer.observe(servicesSection);
     }
 
+    /**
+     * Navbar scrolled state: single scroll listener with { passive: true } to avoid blocking scroll.
+     * Throttle updates with requestAnimationFrame so we only update class once per frame.
+     */
     function setupNavbarScroll() {
         const navbar = document.querySelector('.navbar');
         if (!navbar) return;
 
-        function handleScroll() {
+        let ticking = false;
+        function updateNavbar() {
             const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
             if (scrollPosition > 10) {
                 navbar.classList.add('scrolled');
             } else {
                 navbar.classList.remove('scrolled');
             }
+            ticking = false;
         }
 
-        window.addEventListener('scroll', handleScroll);
-        handleScroll();
+        function onScroll() {
+            if (!ticking) {
+                requestAnimationFrame(updateNavbar);
+                ticking = true;
+            }
+        }
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+        updateNavbar();
     }
 
 })();

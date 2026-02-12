@@ -40,9 +40,9 @@ img {
     height: auto;
 }
 
+/* Navbar: backdrop-filter only on desktop and when supported to reduce paint cost on mobile */
 .navbar {
     background-color: rgba(10, 10, 15, 0.8);
-    backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     padding: 1rem 0;
     position: fixed;
@@ -51,6 +51,20 @@ img {
     right: 0;
     z-index: 1000;
     transition: border-bottom-color 0.3s ease;
+}
+
+@supports (backdrop-filter: blur(1px)) {
+    @media (min-width: 992px) {
+        .navbar {
+            backdrop-filter: blur(10px);
+        }
+    }
+}
+
+@media (max-width: 991px) {
+    .navbar {
+        background-color: rgba(10, 10, 15, 0.92);
+    }
 }
 
 .navbar::after {
@@ -245,19 +259,20 @@ img {
     height: 100%;
     z-index: 0;
 }
+/* Hero video: animate only opacity and transform to avoid expensive filter repaints */
 .hero-bg-video {
     width: 100%;
     height: 100%;
     object-fit: cover;
     opacity: 0;
     transform: scale(1.08);
-    filter: blur(8px);
     animation: heroVideoReveal 1.4s ease-out forwards;
 }
 
 @media (max-width: 768px) {
     .hero-bg-video {
-        object-position: right center;
+        /* Desplazar el encuadre ~160px a la izquierda para centrar el robot en móvil */
+        object-position: calc(50% - 160px) center;
     }
 }
 
@@ -265,16 +280,19 @@ img {
     to {
         opacity: 0.88;
         transform: scale(1);
-        filter: blur(0);
     }
 }
 
+/* Blobs: will-change and contain to reduce paint scope; reduced blur on mobile */
 .bg-blob {
     position: absolute;
     border-radius: 50%;
-    filter: blur(80px);
+    filter: blur(50px);
     opacity: 0.3;
     animation: float 20s ease-in-out infinite;
+    will-change: transform, opacity;
+    contain: paint;
+    pointer-events: none;
 }
 
 .blob-1 {
@@ -302,6 +320,20 @@ img {
     bottom: -100px;
     right: 20%;
     animation-delay: 10s;
+}
+
+@media (max-width: 768px) {
+    .bg-blob {
+        filter: blur(30px);
+        animation: none;
+        opacity: 0.25;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .bg-blob {
+        animation: none;
+    }
 }
 
 @keyframes float {
@@ -641,6 +673,7 @@ img {
     }
 }
 
+/* Section isolation to reduce reflow/paint scope (content-visibility for below-the-fold) */
 .services-section {
     min-height: 75vh;
     padding: 5rem 0;
@@ -652,6 +685,9 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
+    content-visibility: auto;
+    contain-intrinsic-size: auto 800px;
+    contain: layout paint style;
 }
 
 .services-title {
@@ -674,11 +710,37 @@ img {
     border: 1px solid transparent;
     min-height: 460px;
     height: 100%;
-    background-size: cover;
-    background-position: center;
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+    transition: opacity 0.4s ease, transform 0.4s ease, border-color 0.3s ease;
+}
+
+/* Reveal via IntersectionObserver: stagger with nth-child delay; mobile shows immediately */
+@media (max-width: 991px) {
+    .service-card {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.services-section.reveal .row .col-lg-4:nth-child(1) .service-card { transition-delay: 0ms; }
+.services-section.reveal .row .col-lg-4:nth-child(2) .service-card { transition-delay: 100ms; }
+.services-section.reveal .row .col-lg-4:nth-child(3) .service-card { transition-delay: 200ms; }
+
+.services-section.reveal .service-card {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Background image replaced by <img class="service-card-bg"> for lazy loading */
+.service-card-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: -2;
 }
 
 /* Desktop: cards más altas para que no se corte el botón */
@@ -693,18 +755,6 @@ img {
     .service-card {
         min-height: 400px;
     }
-}
-
-.service-card[data-service="1"] {
-    background-image: url("../images/fullstack.jpg");
-}
-
-.service-card[data-service="2"] {
-    background-image: url("../images/database.jpg");
-}
-
-.service-card[data-service="3"] {
-    background-image: url("../images/upgrading.jpg");
 }
 
 .service-card::before {
@@ -792,6 +842,7 @@ img {
     opacity: 0;
     transition: opacity 0.3s ease, background 0.3s ease;
     overflow: hidden;
+    pointer-events: none;
 }
 
 .service-card:hover {
@@ -801,6 +852,7 @@ img {
 .service-card:hover .service-card-detail {
     opacity: 1;
     background: rgba(5, 5, 8, 0.88);
+    pointer-events: auto;
 }
 
 .service-card-title {
@@ -895,9 +947,12 @@ img {
 .services-blob {
     position: absolute;
     border-radius: 50%;
-    filter: blur(90px);
+    filter: blur(50px);
     opacity: 0.4;
     animation: float 25s ease-in-out infinite;
+    will-change: transform, opacity;
+    contain: paint;
+    pointer-events: none;
 }
 
 .services-blob-1 {
@@ -926,6 +981,19 @@ img {
     left: 15%;
     opacity: 0.2;
     animation-delay: 5s;
+}
+
+@media (max-width: 768px) {
+    .services-blob {
+        filter: blur(30px);
+        animation: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .services-blob {
+        animation: none;
+    }
 }
 
 .tech-strip {
@@ -991,6 +1059,9 @@ img {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    content-visibility: auto;
+    contain-intrinsic-size: auto 800px;
+    contain: layout paint style;
 }
 
 .how-we-work-background {
@@ -1006,8 +1077,11 @@ img {
 .how-we-work-blob {
     position: absolute;
     border-radius: 50%;
-    filter: blur(70px);
+    filter: blur(40px);
     animation: float 25s ease-in-out infinite;
+    will-change: transform, opacity;
+    contain: paint;
+    pointer-events: none;
 }
 
 .how-we-work-blob-1 {
@@ -1038,6 +1112,19 @@ img {
     top: 25%;
     right: 15%;
     animation-delay: 15s;
+}
+
+@media (max-width: 768px) {
+    .how-we-work-blob {
+        filter: blur(24px);
+        animation: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .how-we-work-blob {
+        animation: none;
+    }
 }
 
 .how-we-work-wheel-wrap {
@@ -1390,7 +1477,7 @@ img {
     --label-line-h: 0;
     --label-line-h-current: 1.15rem;
     --label-dot-size: 10px;
-    --title-top: 2.75rem;
+    --title-top: 3.25rem;
     --title-offset-y: 30px;
     --info-top: 6.25rem;
     --info-width: min(70%, 500px);
@@ -1427,7 +1514,7 @@ img {
         --label-size: 36px;
         --label-dot-size: 14px;
         --label-line-h-current: 2rem;
-        --title-top: 4rem;
+        --title-top: 4.5rem;
         --info-top: 8rem;
     }
 }
@@ -1573,6 +1660,9 @@ img {
     transition: var(--duration) ease-in-out var(--title-delay, 0ms);
     font-size: 1.75rem;
     font-weight: 600;
+    max-width: min(85%, 320px);
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .how-we-work-section .cards > li > p {
@@ -1588,15 +1678,29 @@ img {
     transition: var(--duration) ease-in-out var(--info-delay, 0ms);
 }
 
-/* How we work – mobile: only title, centered in circle; subtitle hidden */
-@media (max-width: 768px) {
+/* How we work – mobile: bajada del título y contenido dentro de la circunferencia */
+@media (max-width: 767px) {
+    .how-we-work-section .cards-container {
+        --title-top: calc(4.5rem + 10px);
+    }
     .how-we-work-section .cards > li > h2 {
-        font-size: 1.2rem;
+        font-size: 1.475rem;
         text-align: center;
-        max-width: 70%;
+        max-width: min(75%, 260px);
     }
     .how-we-work-section .cards > li > p {
         display: none;
+    }
+}
+
+/* Tablet: descripción y Focus visibles; bajar todo el contenido dentro de la circunferencia */
+@media (min-width: 768px) and (max-width: 991px) {
+    .how-we-work-section .cards-container {
+        --title-top: 4.25rem;
+        --info-top: 7.5rem;
+    }
+    .how-we-work-section .cards > li > p {
+        display: block;
     }
 }
 
@@ -1631,6 +1735,9 @@ img {
     padding: 4rem 0;
     background: var(--bg-dark);
     border-top: 1px solid rgba(255, 255, 255, 0.08);
+    content-visibility: auto;
+    contain-intrinsic-size: auto 800px;
+    contain: layout paint style;
 }
 
 @media (max-width: 768px) {
@@ -1780,6 +1887,9 @@ footer {
     background: var(--bg-darker);
     position: relative;
     overflow: hidden;
+    content-visibility: auto;
+    contain-intrinsic-size: auto 800px;
+    contain: layout paint style;
 }
 
 .why-choose-us-section::before {
@@ -1808,9 +1918,12 @@ footer {
 .why-choose-us-blob {
     position: absolute;
     border-radius: 50%;
-    filter: blur(80px);
+    filter: blur(45px);
     opacity: 0.35;
     animation: float 22s ease-in-out infinite;
+    will-change: transform, opacity;
+    contain: paint;
+    pointer-events: none;
 }
 
 .why-choose-us-blob-1 {
@@ -1821,8 +1934,6 @@ footer {
     top: 20%;
     right: 10%;
     opacity: 0.12;
-    filter: blur(80px);
-    animation: float 22s ease-in-out infinite;
     animation-delay: 0s;
 }
 
@@ -1844,6 +1955,19 @@ footer {
     left: 40%;
     opacity: 0.08;
     animation-delay: 12s;
+}
+
+@media (max-width: 768px) {
+    .why-choose-us-blob {
+        filter: blur(28px);
+        animation: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .why-choose-us-blob {
+        animation: none;
+    }
 }
 
 .why-choose-us-section .container {

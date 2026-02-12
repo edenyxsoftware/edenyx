@@ -71,7 +71,7 @@
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="/">
                 <div class="brand-icon brand-icon-old me-2" aria-hidden="true"></div>
-                <img src="images/edenyx-apple-48.png" alt="" class="brand-icon-img me-2">
+                <img src="images/edenyx-apple-48.png" alt="" class="brand-icon-img me-2" width="48" height="48" fetchpriority="high" loading="eager" decoding="async">
                 <span>edenyx</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -116,17 +116,11 @@
                         <a href="#contact" class="btn btn-outline-secondary rounded-pill px-4 hero-cta-btn">Contact</a>
                     </div>
                 </div>
-                <div class="col-lg-6 hero-visual">
-                    <div class="phone-mockup-container fade-in-right" style="animation-delay: 0.8s;">
-                        <img src="images/image-layered-tablet.png" alt="App Interface" class="phone-mockup">
-                        <img src="images/black-oval.png" alt="" class="phone-shadow">
-                    </div>
-                </div>
             </div>
         </div>
         <div class="hero-background">
             <div class="hero-video-wrap">
-                <video class="hero-bg-video" autoplay muted loop playsinline>
+                <video class="hero-bg-video" autoplay muted loop playsinline preload="metadata">
                     <source src="images/Robot_video.mp4" type="video/mp4">
                 </video>
             </div>
@@ -138,12 +132,12 @@
 
     <section id="technologies" class="tech-strip">
         <div class="tech-strip-inner">
-            <img src="images/html5icon.png" alt="HTML5" class="tech-icon tech-icon-html5">
-            <img src="images/python.png" alt="Python" class="tech-icon tech-icon-python">
-            <img src="images/Javaicon.png" alt="Java" class="tech-icon tech-icon-java">
-            <img src="images/cppicon.png" alt="C++" class="tech-icon tech-icon-cpp">
-            <img src="images/mysql.png" alt="MySQL" class="tech-icon tech-icon-mysql">
-            <img src="images/android-studio.png" alt="Android Studio" class="tech-icon tech-icon-android">
+            <img src="images/html5icon.png" alt="HTML5" class="tech-icon tech-icon-html5" width="80" height="42" loading="lazy" decoding="async">
+            <img src="images/python.png" alt="Python" class="tech-icon tech-icon-python" width="80" height="42" loading="lazy" decoding="async">
+            <img src="images/Javaicon.png" alt="Java" class="tech-icon tech-icon-java" width="80" height="42" loading="lazy" decoding="async">
+            <img src="images/cppicon.png" alt="C++" class="tech-icon tech-icon-cpp" width="80" height="42" loading="lazy" decoding="async">
+            <img src="images/mysql.png" alt="MySQL" class="tech-icon tech-icon-mysql" width="80" height="42" loading="lazy" decoding="async">
+            <img src="images/android-studio.png" alt="Android Studio" class="tech-icon tech-icon-android" width="80" height="42" loading="lazy" decoding="async">
         </div>
     </section>
 
@@ -162,6 +156,7 @@
             <div class="row g-4">
                 <div class="col-lg-4">
                     <div class="service-card" data-service="1">
+                        <img class="service-card-bg" src="images/fullstack.jpg" alt="" width="600" height="540" loading="lazy" decoding="async" fetchpriority="low">
                         <div class="service-card-cover">
                             <span class="service-card-cover-hint" aria-hidden="true"><i
                                     class="bi bi-hand-index-thumb"></i> Click me</span>
@@ -184,6 +179,7 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="service-card" data-service="2">
+                        <img class="service-card-bg" src="images/database.jpg" alt="" width="600" height="540" loading="lazy" decoding="async" fetchpriority="low">
                         <div class="service-card-cover">
                             <span class="service-card-cover-hint" aria-hidden="true"><i
                                     class="bi bi-hand-index-thumb"></i> Click me</span>
@@ -206,6 +202,7 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="service-card" data-service="3">
+                        <img class="service-card-bg" src="images/upgrading.jpg" alt="" width="600" height="540" loading="lazy" decoding="async" fetchpriority="low">
                         <div class="service-card-cover">
                             <span class="service-card-cover-hint" aria-hidden="true"><i
                                     class="bi bi-hand-index-thumb"></i> Click me</span>
@@ -244,7 +241,7 @@
                     <span class="cloud-dot cloud-dot-1"></span>
                     <span class="cloud-dot cloud-dot-2"></span>
                     <div class="cloud-photo">
-                        <img src="images/business1.jpg" alt="">
+                        <img src="images/business1.jpg" alt="" width="158" height="158" loading="lazy" decoding="async">
                     </div>
                 </div>
             </div>
@@ -256,7 +253,7 @@
                         <h2>Requirements</h2>
                         <p><strong>Understanding your project</strong><br><br>We start by analyzing your idea and
                             requirements. This step ensures the solution fits your needs, target audience, and long-term
-                            vision.<br><br><i class="bi bi-search focus-icon"></i> <em>Focus: clarity, feasibility, and
+                            vision.<br><br><i class="bi bi-search focus-icon"></i> <em class="how-we-work-focus-em">Focus: clarity, feasibility, and
                                 scope</em></p>
                     </li>
                     <li style="--i: 1;">
@@ -265,7 +262,7 @@
                         <h2>Technical Strategy</h2>
                         <p><strong>Designing the right solution</strong><br><br>We define the architecture,
                             technologies, and development approach. This guarantees scalability, performance, and clean
-                            structure from the beginning.<br><br><i class="bi bi-cpu focus-icon"></i> <em>Focus:
+                            structure from the beginning.<br><br><i class="bi bi-cpu focus-icon"></i> <em class="how-we-work-focus-em">Focus:
                                 scalability, tech stack, and structure</em></p>
                     </li>
                     <li style="--i: 2;">
@@ -275,16 +272,16 @@
                         <p><strong>Turning ideas into usable interfaces</strong><br><br>We design intuitive, modern
                             interfaces focused on usability and clarity. Every element is built to enhance user
                             experience and guide interaction naturally.<br><br><i class="bi bi-palette focus-icon"></i>
-                            <em>Focus: usability, accessibility, and modern design</em></p>
+                            <em class="how-we-work-focus-em">Focus: usability, accessibility, and modern design</em></p>
                     </li>
                     <li style="--i: 3;">
                         <input type="radio" id="how-item-3" name="how-gallery">
                         <label for="how-item-3"><i class="bi bi-gear"></i> Development</label>
-                        <h2>Custom Development</h2>
+                        <h2>Development</h2>
                         <p><strong>Building with clean and efficient code</strong><br><br>We develop the project using
                             modern technologies and best practices, ensuring clean, secure, and maintainable code
                             tailored specifically to your project.<br><br><i
-                                class="bi bi-gear-wide-connected focus-icon"></i> <em>Focus: performance, security, and
+                                class="bi bi-gear-wide-connected focus-icon"></i> <em class="how-we-work-focus-em">Focus: performance, security, and
                                 customization</em></p>
                     </li>
                     <li style="--i: 4;">
@@ -293,7 +290,7 @@
                         <h2>SEO & Performance</h2>
                         <p><strong>Optimized to be fast and visible</strong><br><br>We optimize loading speed,
                             structure, and SEO fundamentals so your website performs well and is ready to rank from day
-                            one.<br><br><i class="bi bi-rocket-takeoff focus-icon"></i> <em>Focus: speed, SEO, and
+                            one.<br><br><i class="bi bi-rocket-takeoff focus-icon"></i> <em class="how-we-work-focus-em">Focus: speed, SEO, and
                                 technical optimization</em></p>
                     </li>
                     <li style="--i: 5;">
@@ -302,7 +299,7 @@
                         <h2>Quality Assurance</h2>
                         <p><strong>Making sure everything works perfectly</strong><br><br>Before delivery, we thoroughly
                             test functionality, responsiveness, and compatibility across devices and browsers.<br><br><i
-                                class="bi bi-check-circle focus-icon"></i> <em>Focus: stability, reliability, and
+                                class="bi bi-check-circle focus-icon"></i> <em class="how-we-work-focus-em">Focus: stability, reliability, and
                                 quality</em></p>
                     </li>
                     <li style="--i: 6;">
@@ -311,7 +308,7 @@
                         <h2>Deployment</h2>
                         <p><strong>From development to production</strong><br><br>We handle the deployment process and
                             make sure everything is properly configured and running smoothly in production.<br><br><i
-                                class="bi bi-globe focus-icon"></i> <em>Focus: smooth launch and reliability</em></p>
+                                class="bi bi-globe focus-icon"></i> <em class="how-we-work-focus-em">Focus: smooth launch and reliability</em></p>
                     </li>
                     <li style="--i: 7;">
                         <input type="radio" id="how-item-7" name="how-gallery">
@@ -319,7 +316,7 @@
                         <h2>Future Growth</h2>
                         <p><strong>Long-term reliability</strong><br><br>After launch, we will provide support, updates,
                             and improvements to ensure your project continues to grow and evolve with your
-                            needs.<br><br><i class="bi bi-arrow-repeat focus-icon"></i> <em>Focus: maintenance, updates,
+                            needs.<br><br><i class="bi bi-arrow-repeat focus-icon"></i> <em class="how-we-work-focus-em">Focus: maintenance, updates,
                                 and scalability</em></p>
                     </li>
                 </ul>
@@ -330,7 +327,7 @@
                     <span class="cloud-dot cloud-dot-1"></span>
                     <span class="cloud-dot cloud-dot-2"></span>
                     <div class="cloud-photo">
-                        <img src="images/business2.jpg" alt="">
+                        <img src="images/business2.jpg" alt="" width="158" height="158" loading="lazy" decoding="async">
                     </div>
                 </div>
             </div>
@@ -350,7 +347,7 @@
                     <p class="why-choose-us-lead">We don't just build software — we craft custom digital solutions
                         designed to scale, perform, and last.</p>
                     <div class="why-choose-us-image-wrap">
-                        <img src="images/business1.jpg" alt="" class="why-choose-us-image">
+                        <img src="images/business1.jpg" alt="" class="why-choose-us-image" width="480" height="270" loading="lazy" decoding="async">
                     </div>
                 </div>
                 <div class="col-lg-7">
@@ -406,8 +403,8 @@
                         we'll get back to you as soon as possible. You can also reach us directly via WhatsApp or email
                         if you prefer.</p>
                     <div class="contact-photos mt-3 d-flex gap-3">
-                        <img src="images/contact-us.jpg" alt="Contact us illustration 1" class="contact-photo">
-                        <img src="images/contact-us-3.jpg" alt="Contact us illustration 3" class="contact-photo">
+                        <img src="images/contact-us.jpg" alt="Contact us illustration 1" class="contact-photo" width="260" height="175" loading="lazy" decoding="async">
+                        <img src="images/contact-us-2.jpg" alt="Contact us illustration 2" class="contact-photo" width="260" height="175" loading="lazy" decoding="async">
                     </div>
                 </div>
                 <div class="col-lg-6 order-lg-1">

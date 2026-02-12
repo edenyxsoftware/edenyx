@@ -61,7 +61,7 @@
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="/es/">
                 <div class="brand-icon brand-icon-old me-2" aria-hidden="true"></div>
-                <img src="../images/edenyx-apple-48.png" alt="" class="brand-icon-img me-2">
+                <img src="../images/edenyx-apple-48.png" alt="" class="brand-icon-img me-2" width="48" height="48" fetchpriority="high" loading="eager" decoding="async">
                 <span>edenyx</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -105,17 +105,11 @@
                         <a href="#contact" class="btn btn-outline-secondary rounded-pill px-4 hero-cta-btn">Contacto</a>
                     </div>
                 </div>
-                <div class="col-lg-6 hero-visual">
-                    <div class="phone-mockup-container fade-in-right" style="animation-delay: 0.8s;">
-                        <img src="../images/image-layered-tablet.png" alt="Interfaz de aplicación" class="phone-mockup">
-                        <img src="../images/black-oval.png" alt="" class="phone-shadow">
-                    </div>
-                </div>
             </div>
         </div>
         <div class="hero-background">
             <div class="hero-video-wrap">
-                <video class="hero-bg-video" autoplay muted loop playsinline>
+                <video class="hero-bg-video" autoplay muted loop playsinline preload="metadata">
                     <source src="../images/Robot_video.mp4" type="video/mp4">
                 </video>
             </div>
@@ -127,12 +121,12 @@
 
     <section id="technologies" class="tech-strip">
         <div class="tech-strip-inner">
-            <img src="../images/html5icon.png" alt="HTML5" class="tech-icon tech-icon-html5">
-            <img src="../images/python.png" alt="Python" class="tech-icon tech-icon-python">
-            <img src="../images/Javaicon.png" alt="Java" class="tech-icon tech-icon-java">
-            <img src="../images/cppicon.png" alt="C++" class="tech-icon tech-icon-cpp">
-            <img src="../images/mysql.png" alt="MySQL" class="tech-icon tech-icon-mysql">
-            <img src="../images/android-studio.png" alt="Android Studio" class="tech-icon tech-icon-android">
+            <img src="../images/html5icon.png" alt="HTML5" class="tech-icon tech-icon-html5" width="80" height="42" loading="lazy" decoding="async">
+            <img src="../images/python.png" alt="Python" class="tech-icon tech-icon-python" width="80" height="42" loading="lazy" decoding="async">
+            <img src="../images/Javaicon.png" alt="Java" class="tech-icon tech-icon-java" width="80" height="42" loading="lazy" decoding="async">
+            <img src="../images/cppicon.png" alt="C++" class="tech-icon tech-icon-cpp" width="80" height="42" loading="lazy" decoding="async">
+            <img src="../images/mysql.png" alt="MySQL" class="tech-icon tech-icon-mysql" width="80" height="42" loading="lazy" decoding="async">
+            <img src="../images/android-studio.png" alt="Android Studio" class="tech-icon tech-icon-android" width="80" height="42" loading="lazy" decoding="async">
         </div>
     </section>
 
@@ -151,6 +145,7 @@
             <div class="row g-4">
                 <div class="col-lg-4">
                     <div class="service-card" data-service="1">
+                        <img class="service-card-bg" src="../images/fullstack.jpg" alt="" width="600" height="540" loading="lazy" decoding="async" fetchpriority="low">
                         <div class="service-card-cover">
                             <span class="service-card-cover-hint" aria-hidden="true"><i
                                     class="bi bi-hand-index-thumb"></i> Clic aquí</span>
@@ -172,6 +167,7 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="service-card" data-service="2">
+                        <img class="service-card-bg" src="../images/database.jpg" alt="" width="600" height="540" loading="lazy" decoding="async" fetchpriority="low">
                         <div class="service-card-cover">
                             <span class="service-card-cover-hint" aria-hidden="true"><i
                                     class="bi bi-hand-index-thumb"></i> Clic aquí</span>
@@ -193,6 +189,7 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="service-card" data-service="3">
+                        <img class="service-card-bg" src="../images/upgrading.jpg" alt="" width="600" height="540" loading="lazy" decoding="async" fetchpriority="low">
                         <div class="service-card-cover">
                             <span class="service-card-cover-hint" aria-hidden="true"><i
                                     class="bi bi-hand-index-thumb"></i> Clic aquí</span>
@@ -230,7 +227,7 @@
                     <span class="cloud-dot cloud-dot-1"></span>
                     <span class="cloud-dot cloud-dot-2"></span>
                     <div class="cloud-photo">
-                        <img src="../images/business1.jpg" alt="">
+                        <img src="../images/business1.jpg" alt="" width="158" height="158" loading="lazy" decoding="async">
                     </div>
                 </div>
             </div>
@@ -240,49 +237,49 @@
                         <input type="radio" id="how-item-0" name="how-gallery" checked>
                         <label for="how-item-0"><i class="bi bi-compass"></i> Descubrimiento</label>
                         <h2>Requisitos</h2>
-                        <p><strong>Entendiendo tu proyecto</strong><br><br>Empezamos analizando tu idea y requisitos. Este paso asegura que la solución se ajuste a tus necesidades, público objetivo y visión a largo plazo.<br><br><i class="bi bi-search focus-icon"></i> <em>Enfoque: claridad, viabilidad y alcance</em></p>
+                        <p><strong>Entendiendo tu proyecto</strong><br><br>Empezamos analizando tu idea y requisitos. Este paso asegura que la solución se ajuste a tus necesidades, público objetivo y visión a largo plazo.<br><br><i class="bi bi-search focus-icon"></i> <em class="how-we-work-focus-em">Enfoque: claridad, viabilidad y alcance</em></p>
                     </li>
                     <li style="--i: 1;">
                         <input type="radio" id="how-item-1" name="how-gallery">
                         <label for="how-item-1"><i class="bi bi-diagram-3"></i> Planificación</label>
                         <h2>Estrategia técnica</h2>
-                        <p><strong>Diseñando la solución adecuada</strong><br><br>Definimos la arquitectura, tecnologías y enfoque de desarrollo. Esto garantiza escalabilidad, rendimiento y una estructura limpia desde el principio.<br><br><i class="bi bi-cpu focus-icon"></i> <em>Enfoque: escalabilidad, stack tecnológico y estructura</em></p>
+                        <p><strong>Diseñando la solución adecuada</strong><br><br>Definimos la arquitectura, tecnologías y enfoque de desarrollo. Esto garantiza escalabilidad, rendimiento y una estructura limpia desde el principio.<br><br><i class="bi bi-cpu focus-icon"></i> <em class="how-we-work-focus-em">Enfoque: escalabilidad, stack tecnológico y estructura</em></p>
                     </li>
                     <li style="--i: 2;">
                         <input type="radio" id="how-item-2" name="how-gallery">
                         <label for="how-item-2"><i class="bi bi-brush"></i> UI/UX</label>
                         <h2>Diseño UI / UX</h2>
-                        <p><strong>Convirtiendo ideas en interfaces usables</strong><br><br>Diseñamos interfaces intuitivas y modernas centradas en la usabilidad y la claridad. Cada elemento está pensado para mejorar la experiencia de usuario y guiar la interacción de forma natural.<br><br><i class="bi bi-palette focus-icon"></i> <em>Enfoque: usabilidad, accesibilidad y diseño moderno</em></p>
+                        <p><strong>Convirtiendo ideas en interfaces usables</strong><br><br>Diseñamos interfaces intuitivas y modernas centradas en la usabilidad y la claridad. Cada elemento está pensado para mejorar la experiencia de usuario y guiar la interacción de forma natural.<br><br><i class="bi bi-palette focus-icon"></i> <em class="how-we-work-focus-em">Enfoque: usabilidad, accesibilidad y diseño moderno</em></p>
                     </li>
                     <li style="--i: 3;">
                         <input type="radio" id="how-item-3" name="how-gallery">
                         <label for="how-item-3"><i class="bi bi-gear"></i> Desarrollo</label>
-                        <h2>Desarrollo a medida</h2>
-                        <p><strong>Construyendo con código limpio y eficiente</strong><br><br>Desarrollamos el proyecto con tecnologías modernas y buenas prácticas, asegurando código limpio, seguro y mantenible adaptado a tu proyecto.<br><br><i class="bi bi-gear-wide-connected focus-icon"></i> <em>Enfoque: rendimiento, seguridad y personalización</em></p>
+                        <h2>Desarrollo</h2>
+                        <p><strong>Construyendo con código limpio y eficiente</strong><br><br>Desarrollamos el proyecto con tecnologías modernas y buenas prácticas, asegurando código limpio, seguro y mantenible adaptado a tu proyecto.<br><br><i class="bi bi-gear-wide-connected focus-icon"></i> <em class="how-we-work-focus-em">Enfoque: rendimiento, seguridad y personalización</em></p>
                     </li>
                     <li style="--i: 4;">
                         <input type="radio" id="how-item-4" name="how-gallery">
                         <label for="how-item-4"><i class="bi bi-rocket-takeoff"></i> SEO</label>
                         <h2>SEO y rendimiento</h2>
-                        <p><strong>Optimizado para ser rápido y visible</strong><br><br>Optimizamos la velocidad de carga, la estructura y los fundamentos SEO para que tu web rinda bien y esté lista para posicionar desde el primer día.<br><br><i class="bi bi-rocket-takeoff focus-icon"></i> <em>Enfoque: velocidad, SEO y optimización técnica</em></p>
+                        <p><strong>Optimizado para ser rápido y visible</strong><br><br>Optimizamos la velocidad de carga, la estructura y los fundamentos SEO para que tu web rinda bien y esté lista para posicionar desde el primer día.<br><br><i class="bi bi-rocket-takeoff focus-icon"></i> <em class="how-we-work-focus-em">Enfoque: velocidad, SEO y optimización técnica</em></p>
                     </li>
                     <li style="--i: 5;">
                         <input type="radio" id="how-item-5" name="how-gallery">
                         <label for="how-item-5"><i class="bi bi-check-circle"></i> Pruebas</label>
                         <h2>Control de calidad</h2>
-                        <p><strong>Asegurando que todo funcione perfectamente</strong><br><br>Antes de la entrega, probamos a fondo la funcionalidad, la adaptabilidad y la compatibilidad en dispositivos y navegadores.<br><br><i class="bi bi-check-circle focus-icon"></i> <em>Enfoque: estabilidad, fiabilidad y calidad</em></p>
+                        <p><strong>Asegurando que todo funcione perfectamente</strong><br><br>Antes de la entrega, probamos a fondo la funcionalidad, la adaptabilidad y la compatibilidad en dispositivos y navegadores.<br><br><i class="bi bi-check-circle focus-icon"></i> <em class="how-we-work-focus-em">Enfoque: estabilidad, fiabilidad y calidad</em></p>
                     </li>
                     <li style="--i: 6;">
                         <input type="radio" id="how-item-6" name="how-gallery">
                         <label for="how-item-6"><i class="bi bi-globe"></i> Lanzamiento</label>
                         <h2>Despliegue</h2>
-                        <p><strong>Del desarrollo a producción</strong><br><br>Gestionamos el despliegue y nos aseguramos de que todo quede bien configurado y funcionando correctamente en producción.<br><br><i class="bi bi-globe focus-icon"></i> <em>Enfoque: lanzamiento fluido y fiabilidad</em></p>
+                        <p><strong>Del desarrollo a producción</strong><br><br>Gestionamos el despliegue y nos aseguramos de que todo quede bien configurado y funcionando correctamente en producción.<br><br><i class="bi bi-globe focus-icon"></i> <em class="how-we-work-focus-em">Enfoque: lanzamiento fluido y fiabilidad</em></p>
                     </li>
                     <li style="--i: 7;">
                         <input type="radio" id="how-item-7" name="how-gallery">
                         <label for="how-item-7"><i class="bi bi-arrow-repeat"></i> Soporte</label>
                         <h2>Crecimiento futuro</h2>
-                        <p><strong>Fiabilidad a largo plazo</strong><br><br>Tras el lanzamiento, ofrecemos soporte, actualizaciones y mejoras para que tu proyecto siga creciendo y evolucionando con tus necesidades.<br><br><i class="bi bi-arrow-repeat focus-icon"></i> <em>Enfoque: mantenimiento, actualizaciones y escalabilidad</em></p>
+                        <p><strong>Fiabilidad a largo plazo</strong><br><br>Tras el lanzamiento, ofrecemos soporte, actualizaciones y mejoras para que tu proyecto siga creciendo y evolucionando con tus necesidades.<br><br><i class="bi bi-arrow-repeat focus-icon"></i> <em class="how-we-work-focus-em">Enfoque: mantenimiento, actualizaciones y escalabilidad</em></p>
                     </li>
                 </ul>
             </div>
@@ -292,7 +289,7 @@
                     <span class="cloud-dot cloud-dot-1"></span>
                     <span class="cloud-dot cloud-dot-2"></span>
                     <div class="cloud-photo">
-                        <img src="../images/business2.jpg" alt="">
+                        <img src="../images/business2.jpg" alt="" width="158" height="158" loading="lazy" decoding="async">
                     </div>
                 </div>
             </div>
@@ -311,7 +308,7 @@
                     <h2 class="why-choose-us-title">¿Por qué elegir Edenyx?</h2>
                     <p class="why-choose-us-lead">No solo desarrollamos software: creamos soluciones digitales a medida pensadas para escalar, rendir y perdurar.</p>
                     <div class="why-choose-us-image-wrap">
-                        <img src="../images/business1.jpg" alt="" class="why-choose-us-image">
+                        <img src="../images/business1.jpg" alt="" class="why-choose-us-image" width="480" height="270" loading="lazy" decoding="async">
                     </div>
                 </div>
                 <div class="col-lg-7">
@@ -359,8 +356,8 @@
                     <h2 class="contact-section-title">Contacta con nosotros</h2>
                     <p class="contact-section-description">¿Tienes un proyecto en mente o necesitas un presupuesto? Envíanos un mensaje y te responderemos lo antes posible. También puedes contactarnos directamente por WhatsApp o correo electrónico si lo prefieres.</p>
                     <div class="contact-photos mt-3 d-flex gap-3">
-                        <img src="../images/contact-us.jpg" alt="Ilustración de contacto 1" class="contact-photo">
-                        <img src="../images/contact-us-3.jpg" alt="Ilustración de contacto 3" class="contact-photo">
+                        <img src="../images/contact-us.jpg" alt="Ilustración de contacto 1" class="contact-photo" width="260" height="175" loading="lazy" decoding="async">
+                        <img src="../images/contact-us-2.jpg" alt="Ilustración de contacto 2" class="contact-photo" width="260" height="175" loading="lazy" decoding="async">
                     </div>
                 </div>
                 <div class="col-lg-6 order-lg-1">
