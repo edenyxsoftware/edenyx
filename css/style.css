@@ -996,6 +996,380 @@ img {
     }
 }
 
+/* ServicesNew (Figma): título, fadebar y subtítulo alineados; cards responsive */
+.services-section.services-new {
+    background: var(--bg-darker);
+    padding: 5rem 0;
+    min-height: auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.services-section.services-new .services-new-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.services-section.services-new .services-new-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(40px);
+    animation: float 25s ease-in-out infinite;
+    will-change: transform, opacity;
+    contain: paint;
+    pointer-events: none;
+}
+
+.services-section.services-new .services-new-blob-1 {
+    width: 180px;
+    height: 180px;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    opacity: 0.09;
+    top: 55%;
+    left: -20px;
+    animation-delay: 0s;
+}
+
+.services-section.services-new .services-new-blob-2 {
+    width: 265px;
+    height: 265px;
+    background: linear-gradient(135deg, var(--gradient-end), #1a1a2e);
+    opacity: 0.06;
+    top: 18%;
+    right: 15%;
+    animation-delay: 8s;
+}
+
+.services-section.services-new .services-new-blob-3 {
+    width: 285px;
+    height: 285px;
+    background: linear-gradient(135deg, #3b82f6, var(--gradient-start));
+    opacity: 0.08;
+    top: 32%;
+    left: 15%;
+    animation-delay: 15s;
+}
+
+@media (max-width: 768px) {
+    .services-section.services-new .services-new-blob {
+        filter: blur(24px);
+        animation: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .services-section.services-new .services-new-blob {
+        animation: none;
+    }
+}
+
+.services-section.services-new .container {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+}
+
+/* Tablet: mismo ancho que la sección "Por qué elegirnos" (Bootstrap .container) */
+@media (max-width: 991px) {
+    .services-section.services-new .container {
+        max-width: 720px;
+    }
+}
+
+@media (max-width: 767px) {
+    .services-section.services-new .container {
+        max-width: 540px;
+    }
+}
+
+.services-new-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+}
+
+.services-new-title {
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 1.25rem 0;
+    text-align: center;
+}
+
+.services-new-subtitle {
+    max-width: 850px;
+    margin: 0 auto 2.75rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #fff;
+    text-align: center;
+}
+
+.services-new-fadebar {
+    width: 100%;
+    max-width: 980px;
+    height: 2px;
+    margin: 1.25rem auto 0;
+    background: linear-gradient(90deg, transparent 0%, var(--gradient-start) 30%, var(--gradient-end) 70%, transparent 100%);
+    box-shadow: 0 0 100px rgba(139, 92, 246, 0.2);
+}
+
+@media (min-width: 992px) {
+    .services-new-title {
+        margin-bottom: 1.75rem;
+    }
+    .services-new-subtitle {
+        margin-bottom: 3.25rem;
+    }
+    .services-new-fadebar {
+        margin-top: 1.75rem;
+    }
+}
+
+.services-new-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem 2.25rem;
+    align-items: stretch;
+}
+
+@media (max-width: 991px) {
+    .services-new-subtitle {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    .services-new-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Móvil: mismo margen lateral que "Por qué elegirnos" (Bootstrap container) */
+@media (max-width: 575px) {
+    .services-new-title,
+    .services-new-subtitle {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+}
+
+@media (max-width: 575px) {
+    .services-new-cards {
+        gap: 1.5rem;
+    }
+}
+
+.service-new-card {
+    position: relative;
+    min-height: 380px;
+    width: 100%;
+    max-width: 305px;
+    margin: 0 auto;
+    padding: 18px 22px 24px;
+    border-radius: 22px;
+    background-image: url('../images/servicecardbackground.webp');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+/* Card horizontal solo en tablet: imagen izquierda, título+subtítulo centro, botón derecha */
+@media (min-width: 576px) and (max-width: 768px) {
+    .service-new-card {
+        max-width: 100%;
+        min-height: 0;
+        padding: 1rem 1.25rem;
+        border-radius: 16px;
+        border: 1px solid #7600A4;
+        background-image: url('../images/ExampleCardResponsive.webp');
+        background-size: cover;
+        background-position: center;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        grid-template-rows: auto auto;
+        align-items: center;
+        gap: 0.12rem 1rem;
+        text-align: left;
+    }
+
+    .service-new-card .service-new-badge {
+        grid-column: 3;
+        grid-row: 1;
+        margin-bottom: 0;
+        justify-self: center;
+        width: 72px;
+        height: 26px;
+        font-size: 8px;
+    }
+
+    .service-new-card .service-new-icon-wrap {
+        grid-column: 1;
+        grid-row: 1 / -1;
+        width: 88px;
+        height: 80px;
+        margin: 0;
+        margin-top: 0;
+    }
+
+    .service-new-card .service-new-title {
+        grid-column: 2;
+        grid-row: 1;
+        margin: 0 0 0.02rem 0;
+        font-size: 27px;
+        max-width: none;
+    }
+
+    .service-new-card .service-new-description {
+        grid-column: 2;
+        grid-row: 2;
+        margin: 0;
+        font-size: 12px;
+        max-width: none;
+    }
+
+    .service-new-card .service-new-btn {
+        grid-column: 3;
+        grid-row: 2;
+        justify-self: center;
+        width: auto;
+        min-width: 0;
+        padding: 0.5rem 1rem;
+        font-size: 0.8125rem;
+        border-radius: 9999px;
+    }
+}
+
+/* Móvil: mismas secciones que escritorio pero más bajitas (layout vertical), contenido más apretado */
+@media (max-width: 575px) {
+    .service-new-card {
+        min-height: 270px;
+        padding: 10px 18px 14px;
+        border: 1px solid #7600A4;
+        background-image: url('../images/ExampleCardMobile.webp');
+        background-size: cover;
+        background-position: center;
+    }
+
+    .service-new-card .service-new-badge {
+        margin-bottom: 0.5rem;
+    }
+
+    .service-new-card .service-new-icon-wrap {
+        width: 130px;
+        height: 115px;
+        margin-top: -2px;
+        margin-bottom: 0.4rem;
+    }
+
+    .service-new-card .service-new-title {
+        font-size: 22px;
+        margin: -6px 0 0.2rem 0;
+    }
+
+    .service-new-card .service-new-description {
+        font-size: 11px;
+        margin: 0 0 0.65rem 0;
+    }
+
+    .service-new-card .service-new-btn {
+        min-width: 180px;
+        height: 32px;
+        font-size: 0.875rem;
+    }
+}
+
+.service-new-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 96px;
+    height: 33px;
+    font-family: Inter, sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    color: #fff;
+    background: linear-gradient(135deg, #1b1b1b 0%, #545454 100%);
+    border: 2px solid rgba(102, 102, 102, 0.5);
+    border-radius: 40px;
+    margin-bottom: 1rem;
+    flex-shrink: 0;
+}
+
+.service-new-icon-wrap {
+    width: 160px;
+    height: 148px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -6px;
+    margin-bottom: 1rem;
+    flex-shrink: 0;
+}
+
+.service-new-icon-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    filter: drop-shadow(0 4px 20px rgba(118, 0, 164, 0.25));
+}
+
+.service-new-title {
+    font-family: "Inria Sans", sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #fff;
+    margin: -10px 0 0.5rem 0;
+    line-height: 1.2;
+}
+
+.service-new-description {
+    font-family: "Inria Sans", sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.35;
+    color: #8E8E8E;
+    margin: 0 0 1.25rem 0;
+    flex-grow: 1;
+    max-width: 234px;
+}
+
+.service-new-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 215px;
+    min-width: 215px;
+    height: 35px;
+    padding: 0 1rem;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: #fff;
+    text-decoration: none;
+    background: linear-gradient(90deg, rgb(139, 92, 246) 0%, rgb(236, 72, 153) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    transition: opacity 0.25s ease, transform 0.2s ease;
+    flex-shrink: 0;
+}
+
+.service-new-btn:hover {
+    color: #fff;
+    opacity: 0.95;
+    transform: translateY(-4px);
+}
+
 .tech-strip {
     width: 100%;
     min-height: 100px;

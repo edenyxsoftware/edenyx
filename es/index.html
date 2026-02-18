@@ -43,7 +43,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inria+Sans:wght@400;700&display=swap" rel="stylesheet">
 
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
@@ -130,85 +130,46 @@
         </div>
     </section>
 
-    <section id="services" class="services-section">
-        <div class="services-background">
-            <div class="services-blob services-blob-1"></div>
-            <div class="services-blob services-blob-2"></div>
-            <div class="services-blob services-blob-3"></div>
+    <section id="services" class="services-section services-new">
+        <div class="services-new-background">
+            <div class="services-new-blob services-new-blob-1"></div>
+            <div class="services-new-blob services-new-blob-2"></div>
+            <div class="services-new-blob services-new-blob-3"></div>
         </div>
         <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <h2 class="services-title">Servicios</h2>
-                </div>
-            </div>
-            <div class="row g-4">
-                <div class="col-lg-4">
-                    <div class="service-card" data-service="1">
-                        <img class="service-card-bg" src="../images/fullstack.jpg" alt="" width="600" height="540" loading="lazy" decoding="async" fetchpriority="low">
-                        <div class="service-card-cover">
-                            <span class="service-card-cover-hint" aria-hidden="true"><i
-                                    class="bi bi-hand-index-thumb"></i> Clic aquí</span>
-                            <h3 class="service-card-title">Desarrollo Full Stack</h3>
-                        </div>
-                        <div class="service-card-detail">
-                            <h3 class="service-card-title">Desarrollo Full Stack</h3>
-                            <p class="service-card-description">Aplicaciones web, móviles o de escritorio. Desarrollo completo desde el frontend hasta el backend.</p>
-                            <ul class="service-features">
-                                <li><i class="bi bi-check-circle-fill"></i> React, Vue, Angular</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Node.js, Python, PHP</li>
-                                <li><i class="bi bi-check-circle-fill"></i> React Native, Flutter</li>
-                                <li><i class="bi bi-check-circle-fill"></i> APIs RESTful</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Diseño de bases de datos</li>
-                            </ul>
-                            <a href="#contact" class="btn btn-primary rounded-pill px-5 mt-auto">Me interesa</a>
-                        </div>
+            <header class="services-new-header">
+                <h2 class="services-new-title">Nuestros Servicios</h2>
+                <p class="services-new-subtitle">En Edenyx, ofrecemos una gama completa de servicios para cubrir todas las etapas del desarrollo de software. Nuestro equipo de expertos trabaja contigo para crear soluciones digitales a medida, escalables y de alta calidad</p>
+                <div class="services-new-fadebar" aria-hidden="true"></div>
+            </header>
+            <div class="services-new-cards">
+                <article class="service-new-card">
+                    <span class="service-new-badge">AHORRA 30%</span>
+                    <div class="service-new-icon-wrap">
+                        <img src="../images/cpu.png" alt="" class="service-new-icon-img" width="140" height="129" loading="lazy" decoding="async">
                     </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="service-card" data-service="2">
-                        <img class="service-card-bg" src="../images/database.jpg" alt="" width="600" height="540" loading="lazy" decoding="async" fetchpriority="low">
-                        <div class="service-card-cover">
-                            <span class="service-card-cover-hint" aria-hidden="true"><i
-                                    class="bi bi-hand-index-thumb"></i> Clic aquí</span>
-                            <h3 class="service-card-title">Gestión de bases de datos, dominio y hosting</h3>
-                        </div>
-                        <div class="service-card-detail">
-                            <h3 class="service-card-title">Gestión de bases de datos, dominio y hosting</h3>
-                            <p class="service-card-description">Gestión de sitios web, optimización SEO y despliegue. Servicios completos de mantenimiento y optimización.</p>
-                            <ul class="service-features">
-                                <li><i class="bi bi-check-circle-fill"></i> Optimización SEO</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Ajuste de rendimiento</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Dominio y certificados SSL</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Mantenimiento de bases de datos</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Copias de seguridad y seguridad</li>
-                            </ul>
-                            <a href="#contact" class="btn btn-primary rounded-pill px-5 mt-auto">Me interesa</a>
-                        </div>
+                    <h3 class="service-new-title">Desarrollo Full Stack</h3>
+                    <p class="service-new-description">Webs, apps y APIs a medida. Optimizado y escalable.</p>
+                    <a href="#contact" class="service-new-btn">Saber más</a>
+                </article>
+                <article class="service-new-card">
+                    <span class="service-new-badge">AHORRA 30%</span>
+                    <div class="service-new-icon-wrap">
+                        <img src="../images/cloud.png" alt="" class="service-new-icon-img" width="132" height="94" loading="lazy" decoding="async">
                     </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="service-card" data-service="3">
-                        <img class="service-card-bg" src="../images/upgrading.jpg" alt="" width="600" height="540" loading="lazy" decoding="async" fetchpriority="low">
-                        <div class="service-card-cover">
-                            <span class="service-card-cover-hint" aria-hidden="true"><i
-                                    class="bi bi-hand-index-thumb"></i> Clic aquí</span>
-                            <h3 class="service-card-title">Actualización</h3>
-                        </div>
-                        <div class="service-card-detail">
-                            <h3 class="service-card-title">Actualización</h3>
-                            <p class="service-card-description">Mejoras para sitios web existentes o migración a tecnologías modernas. Potencia tu plataforma actual.</p>
-                            <ul class="service-features">
-                                <li><i class="bi bi-check-circle-fill"></i> Migración de tecnologías</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Rediseño UI/UX</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Mejora de rendimiento</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Conversión responsive</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Refactorización de código</li>
-                            </ul>
-                            <a href="#contact" class="btn btn-primary rounded-pill px-5 mt-auto">Me interesa</a>
-                        </div>
+                    <h3 class="service-new-title">Bases de datos</h3>
+                    <p class="service-new-description">Creación, optimización y gestión de tus bases de datos</p>
+                    <a href="#contact" class="service-new-btn">Saber más</a>
+                </article>
+                <article class="service-new-card">
+                    <span class="service-new-badge">AHORRA 30%</span>
+                    <div class="service-new-icon-wrap">
+                        <img src="../images/warning.png" alt="" class="service-new-icon-img" width="129" height="129" loading="lazy" decoding="async">
                     </div>
-                </div>
+                    <h3 class="service-new-title">Escalado y mejoras</h3>
+                    <p class="service-new-description">Propuesta de mejoras, escalado y digitalización</p>
+                    <a href="#contact" class="service-new-btn">Saber más</a>
+                </article>
             </div>
         </div>
     </section>
